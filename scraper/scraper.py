@@ -5,8 +5,11 @@ from selenium.webdriver.support import expected_conditions as EC
 import sys, os
 
 # Getting Login Info
-login_username = os.environ['USERNAME']
-login_password = os.environ['PASSWORD']
+try:
+    login_username = os.environ['USERNAME']
+    login_password = os.environ['PASSWORD']
+except:
+    print("please set USERNAME and PASSWORD envirnoment values for MyConcordia!")
 
 # Storing jobname
 try:
@@ -14,6 +17,7 @@ try:
 except:
 	print("please enter the job name argument!")
 	sys.exit(0)
+    
 # Creating webdriver
 filedir = os.path.dirname(os.path.abspath(__file__))
 chromedriver_path = os.path.join(filedir, "chromedriver")
@@ -61,13 +65,13 @@ tempfile = open("temp.txt","w+")
 # Gather employer info
 table_trs = driver.find_elements_by_xpath('//div[@id="postingDiv"]/div[4]/div[2]/table/tbody/tr')
 
-for tr in table_trs:
-
-    td = tr.find_elements_by_xpath(".//td[2]")
-    for element in td:
-    	element_val = str.strip(element.get_attribute("innerHTML"))
-    	tempfile.write(element_val + "\n")
-    	print(element_val)
+for i in range(9):
+    tr = table_trs[i]
+    name_td = tr.find_elements_by_xpath(".//td[1]/strong")
+    value_td = tr.find_elements_by_xpath(".//td[2]")
+    name = str.strip(name_td[0].get_attribute("innerHTML"))
+    value = str.strip(value_td[0].get_attribute("innerHTML"))
+    tempfile.write(name + "->" + value + "\n")
 
 #closing tempfile
 tempfile.close()

@@ -1,9 +1,9 @@
-Bell Canada
-Ms.
-Sarra
-Haddad
-200 bld Bouchard
-5th floor
-DORVAL
-Québec
-H9S1A6
+Organization:->Bell Canada
+Salutation:->Ms.
+Job Contact First Name:->Sarra
+Job Contact Last Name:->Haddad
+Address Line One:->200 bld Bouchard
+Address Line Two:->5th floor
+City:->DORVAL
+Province / State:->Québec
+Postal Code / Zip Code:->H9S1A6
