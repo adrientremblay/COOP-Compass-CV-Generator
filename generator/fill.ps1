@@ -1,6 +1,7 @@
 # global vars
-$template = "C:\Users\adrie\OneDrive\Documents\COOP\cover_letters_auto\master_coverletter_template.docx"
-$tempFolder = "C:\Users\adrie\OneDrive\Documents\COOP\cover_letters_auto\TEMP"
+$scriptDir = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
+$template = "$scriptDir\master_coverletter_template.docx"
+$tempFolder = "$scriptDir\TEMP"
 
 # unzip function
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -47,6 +48,18 @@ function Replace {
     return $body.Replace($final, $value)
 }
 
+# get info from temp.txt
+#   Index 0 -> Company Name
+#   Index 1 -> Prefix
+#   Index 2 -> First Name
+#   Index 3 -> Last Name
+#   Index 4 -> Website OR Address Line 1
+#   Index 5 -> Address Line 1 OR Address Line 2
+#   Index 6 -> City
+#   Index 7 -> Province
+#   Index 8 -> Postal Code
+$infoContents = Get-Content -Path "$scriptDir\..\scraper\temp.txt"
+
 # prepare folder
 Remove-Item $tempFolder -ErrorAction SilentlyContinue -Recurse -Confirm:$false | Out-Null
 mkdir $tempFolder | Out-Null
@@ -57,8 +70,13 @@ Unzip $template $tempFolder
 # replace text
 $bodyFile = $tempFolder + "\word\document.xml"
 $body = Get-Content $bodyFile
+
+#For ($i=0; $i -le 9; $i++) {
+    
+#}
+
 $body = Replace "name" "bob marley"
-Write-Host $body -Fore Green
+
 $body | Out-File $bodyFile -Force -Encoding ascii
 
 # zip DOCX
