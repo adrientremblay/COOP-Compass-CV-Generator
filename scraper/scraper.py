@@ -51,7 +51,7 @@ for handle in driver.window_handles:
 driver.switch_to.window(compass_page)
 
 WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "Jobs"))).click()
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "For My Program"))).click()
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "Application Deadlines Today"))).click()
 
 # Navigate to specific job page
 WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, job_name))).click()
@@ -67,7 +67,7 @@ tempfile = open("temp.txt","w+")
 # Gather employer info
 table_trs = driver.find_elements_by_xpath('//div[@id="postingDiv"]/div[4]/div[2]/table/tbody/tr')
 
-for i in range(9):
+for i in range(len(table_trs)):
     tr = table_trs[i]
     name_td = tr.find_elements_by_xpath(".//td[1]/strong")
     value_td = tr.find_elements_by_xpath(".//td[2]")
