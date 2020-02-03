@@ -76,11 +76,12 @@ Function Add-OSCPicture {
     
 }
 
-# Global Variables
+# Constant Variables
 $scriptDir = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
 $templatePath = "$scriptDir\master_coverletter_template.docx"
 $signaturePath = "$scriptDir\signature.png"
 $outputPath = "$scriptDir\master_coverletter_output.docx"
+$outputPathPDF = "$scriptDir\master_coverletter_output.pdf"
 
 # Get info from temp.txt
 #   name->value
@@ -89,7 +90,6 @@ $infoContents = Get-Content -Path "$scriptDir\..\scraper\temp.txt"
 # Start Word Object
 $Word = New-Object -ComObject Word.Application
 $Word.Visible = $False
-# Open File
 $OpenFile = $Word.Documents.Open($templatePath)
 $Content = $OpenFile.Content
 
@@ -106,9 +106,18 @@ Foreach ($line in $infoContents) {
 $Content.Text = $newText
 $OpenFile.Saveas($outputPath)
 $OpenFile.close()
+$Word.Quit()
 
 # Appending signature image
 Add-OSCPicture -WordDocumentPath $outputPath -ImageFolderPath $signaturePath 
+
+# Open file and save as PDF
+$Word = New-Object -ComObject Word.Application
+$Word.Visible = $False
+$OpenFile = $Word.Documents.Open($outputPath)
+$OpenFile.Saveas($outputPathPDF,  17)
+$OpenFile.close()
+$Word.Quit()
 
 # Closing Message
 Write-Output 'Generation Complete!'
