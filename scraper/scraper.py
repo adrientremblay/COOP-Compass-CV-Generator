@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import unidecode
 import sys, os
 
 # Getting Login Info
@@ -70,7 +71,7 @@ for i in range(9):
     name_td = tr.find_elements_by_xpath(".//td[1]/strong")
     value_td = tr.find_elements_by_xpath(".//td[2]")
     name = str.strip(name_td[0].get_attribute("innerHTML"))
-    value = str.strip(value_td[0].get_attribute("innerHTML"))
+    value =  unidecode.unidecode(str.strip(value_td[0].get_attribute("innerHTML")))
     tempfile.write(name + "->" + value + "\n")
 
 #closing tempfile

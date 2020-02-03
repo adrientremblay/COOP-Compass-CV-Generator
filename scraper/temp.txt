@@ -5,5 +5,5 @@ Job Contact Last Name:->Haddad
 Address Line One:->200 bld Bouchard
 Address Line Two:->5th floor
 City:->DORVAL
-Province / State:->Québec
+Province / State:->Quebec
 Postal Code / Zip Code:->H9S1A6
