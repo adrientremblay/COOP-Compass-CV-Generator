@@ -22,7 +22,7 @@ except:
     
 # Creating webdriver
 filedir = os.path.dirname(os.path.abspath(__file__))
-chromedriver_path = os.path.join(filedir, "chromedriver")
+chromedriver_path = os.path.join(filedir, "chromedriver.exe") # DETECT OS!!!!!!
 driver = webdriver.Chrome(executable_path=chromedriver_path)
 driver.maximize_window() # window needs to me maximized for the compass sidebar to appear
 
@@ -80,5 +80,5 @@ tempfile.close()
 
 # Run generation powershell file
 
-p = subprocess.Popen(["powershell.exe", os.path.join(filedir, "/../generator/fill.ps1")], stdout=sys.stdout)
+p = subprocess.Popen(["powershell.exe", os.path.join(filedir, "..", "generator", "fill.ps1")], stdout=sys.stdout)
 p.communicate()

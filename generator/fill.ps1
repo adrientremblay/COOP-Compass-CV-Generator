@@ -73,7 +73,6 @@ Function Add-OSCPicture {
         Write-Warning "Cannot find path '$WordDocumentPath' because it does not exist."
     }
     
-    
 }
 
 # Constant Variables
