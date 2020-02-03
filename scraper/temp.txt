@@ -1,7 +1,9 @@
-Organization:->LRDG (Language Research Development Group, Inc.)
-Job Contact First Name:->Amelie
-Job Contact Last Name:->Bruzzese
-Address Line One:->1407, rue Saint-Alexandre
-City:->Montreal
-Province / State:->Quebec
-Postal Code / Zip Code:->H3A 2G3
+Organization:->BMO
+Salutation:->Ms.
+Job Contact First Name:->Campus
+Job Contact Last Name:->Recruitment
+Website:-><a href="http://www4.bmo.com/" target="_blank">http://www4.bmo.com/</a>
+Address Line One:->55 Bloor Street West
+City:->Toronto
+Province / State:->Ontario
+Postal Code / Zip Code:->M4W 3N5

@@ -51,7 +51,7 @@ for handle in driver.window_handles:
 driver.switch_to.window(compass_page)
 
 WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "Jobs"))).click()
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "Application Deadlines Today"))).click()
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "For My Program"))).click()
 
 # Navigate to specific job page
 WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, job_name))).click()
