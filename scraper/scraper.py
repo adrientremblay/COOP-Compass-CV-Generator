@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import unidecode
 import sys, os
+import subprocess
 
 # Getting Login Info
 try:
@@ -74,5 +75,10 @@ for i in range(9):
     value =  unidecode.unidecode(str.strip(value_td[0].get_attribute("innerHTML")))
     tempfile.write(name + "->" + value + "\n")
 
-#closing tempfile
+# Close tempfile
 tempfile.close()
+
+# Run generation powershell file
+
+p = subprocess.Popen(["powershell.exe", os.path.join(filedir, "/../generator/fill.ps1")], stdout=sys.stdout)
+p.communicate()
