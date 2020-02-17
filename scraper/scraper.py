@@ -54,8 +54,11 @@ WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "J
 WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "For My Program"))).click()
 
 # Navigate to specific job page
-driver.find_elements_by_xpath('//td[contains(text(), "' + job_id + '")]/../td[4]/span/a')[0].click()
-# WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, job_name))).click()
+try:
+    driver.find_elements_by_xpath('//td[contains(text(), "' + job_id + '")]/../td[4]/span/a')[0].click()
+except:
+    print("Invalid job ID!")
+    sys.exit(0)
 
 for handle in driver.window_handles: 
     if handle != main_page and handle != compass_page: 

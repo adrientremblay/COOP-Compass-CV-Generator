@@ -82,8 +82,12 @@ $signaturePath = "$scriptDir\signature.png"
 $outputPath = "$scriptDir\master_coverletter_output.docx"
 $outputPathPDF = "$scriptDir\master_coverletter_output.pdf"
 
+$allTags = "<Job Contact First Name:>", "<Job Contact Last Name:>", "<Organization:>", "<Address Line One:>", "<Address Line Two:>",
+"<City:>", "<Province / State:>", "<Postal Code / Zip Code:>",
+"<Salutation:>"
+
 # Get info from temp.txt
-#   name->value
+#   format : [name->value]
 $infoContents = Get-Content -Path "$scriptDir\..\scraper\temp.txt"
 
 # Start Word Object
@@ -99,7 +103,11 @@ $newText = $Content.Text
 Foreach ($line in $infoContents) {
     $lineSplit = $line -split "->"
     $newText = $newText  -replace "<$($lineSplit[0])>", $lineSplit[1]
-}                         
+}
+# Removing unused tags
+Foreach ($tag in $allTags) {
+    $newText = $newText  -replace $tag, ""
+}                  
 
 # Make the modified text the new content and Save to new document
 $Content.Text = $newText
