@@ -83,6 +83,6 @@ for i in range(len(table_trs)):
 tempfile.close()
 
 # Run generation powershell file
-print("Begining file generation!")
+print("Beginning file generation!")
 p = subprocess.Popen(["powershell.exe", os.path.join(filedir, "..", "generator", "fill.ps1")], stdout=sys.stdout)
 p.communicate()
