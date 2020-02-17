@@ -15,7 +15,7 @@ except:
 
 # Storing jobname
 try:
-	job_name = sys.argv[1]
+	job_id = sys.argv[1]
 except:
 	print("please enter the job name argument!")
 	sys.exit(0)
@@ -54,7 +54,8 @@ WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "J
 WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "For My Program"))).click()
 
 # Navigate to specific job page
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, job_name))).click()
+driver.find_elements_by_xpath('//td[contains(text(), "' + job_id + '")]/../td[4]/span/a')[0].click()
+# WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, job_name))).click()
 
 for handle in driver.window_handles: 
     if handle != main_page and handle != compass_page: 
@@ -79,6 +80,6 @@ for i in range(len(table_trs)):
 tempfile.close()
 
 # Run generation powershell file
-
+print("Begining file generation!")
 p = subprocess.Popen(["powershell.exe", os.path.join(filedir, "..", "generator", "fill.ps1")], stdout=sys.stdout)
 p.communicate()
