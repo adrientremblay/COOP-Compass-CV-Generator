@@ -8,10 +8,10 @@ import subprocess
 
 # Getting Login Info
 try:
-    login_username = os.environ['USERNAME']
-    login_password = os.environ['PASSWORD']
+    login_username = os.environ['USERNAME_MYCONCORDIA']
+    login_password = os.environ['PASSWORD_MYCONCORDIA']
 except:
-    print("please set USERNAME and PASSWORD envirnoment values for MyConcordia!")
+    print("please set USERNAME_MYCONCORDIA and PASSWORD_MYCONCORDIA envirnoment values for MyConcordia!")
 
 # Storing jobname
 try:
@@ -33,11 +33,11 @@ main_page = driver.current_window_handle
 
 username = driver.find_element_by_id("userid")
 username.clear()
-username.send_keys("a_mbl")
+username.send_keys(login_username)
 
 password = driver.find_element_by_name("pwd")
 password.clear()
-password.send_keys("Shadowhideyou4%")
+password.send_keys(login_password)
 
 driver.find_element_by_class_name("form_button_submit").click()
 
